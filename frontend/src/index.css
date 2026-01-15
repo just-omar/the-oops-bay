@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* Базовый фон: чуть светлее черного для мягкости */
+  /* Текст: gray-50 - почти белый, очень яркий */
+  /* Шрифт: увеличен (text-base -> text-lg для body может быть перебором, 
+     поэтому оставим базу, но увеличим конкретные элементы в компонентах) */
+  @apply bg-[#0a0a0a] text-gray-50 antialiased;
+}
+
+/* Глобальное увеличение для всех inputs/buttons, чтобы не было мелко */
+input,
+button,
+select,
+textarea {
+  @apply text-base;
+}
+
+/* Кастомный скроллбар для эстетики */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full hover:bg-orange-500 transition-colors;
+}

@@ -1,0 +1,8 @@
+the-oops-bay
+the-oops-bay.db
+data/
+node_modules/
+frontend/dist/
+frontend/node_modules/
+.DS_Store
+/tmp/

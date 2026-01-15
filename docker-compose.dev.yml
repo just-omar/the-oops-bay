@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # --- GO BACKEND (с Hot Reload) ---
+  backend:
+    container_name: the-oops-bay_backend_dev
+    image: golang:1.25-alpine
+    working_dir: /app
+    volumes:
+      - ./:/app                          # Прокидываем код внутрь
+      - /var/run/docker.sock:/var/run/docker.sock
+      - the-oops-bay_data_dev:/app/data
+      - go_cache:/go/pkg/mod             # Кэш модулей, чтобы не качать каждый раз
+    ports:
+      - "127.0.0.1:8888:3000"                      # Доступ к API напрямую (если нужно)
+    environment:
+      - CGO_ENABLED=0
+    # Устанавливаем Air (hot reload) и запускаем его
+    command: sh -c "go install github.com/air-verse/air@latest && air"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # --- REACT FRONTEND (с Hot Reload) ---
+  frontend:
+    container_name: the-oops-bay_frontend_dev
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./frontend:/app                  # Прокидываем код фронта
+      - /app/node_modules                # Не перезаписываем node_modules локальными (важно!)
+    ports:
+      - "127.0.0.1:3333:5173"                      
+    environment:
+      - CHOKIDAR_USEPOLLING=true         # Нужно для Docker на Windows/Mac
+    # Запускаем Vite с флагом host, чтобы он был доступен извне
+    command: sh -c "npm install && npm run dev -- --host"
+    depends_on:
+      backend:
+        condition: service_healthy # Фронтенд будет ждать, пока бэкенд станет 'healthy'
+
+volumes:
+  the-oops-bay_data_dev:
+  go_cache:

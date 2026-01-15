@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  the-oops-bay:
+    container_name: the-oops-bay_prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - the-oops-bay_data:/root/data
+
+volumes:
+  the-oops-bay_data:
