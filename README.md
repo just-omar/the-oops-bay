@@ -10,6 +10,12 @@ No clutter. No cognitive overload. No enterprise bloat.
 
 ---
 
+![alt text](image.png)
+---
+![alt text](image-2.png)
+---
+![alt text](image-1.png)
+
 ## 🚀 Quick Start (Up and Running in 1 Minute)
 
 We respect your time ⏱️ — setup is right here at the top.
@@ -25,7 +31,7 @@ docker run -d \
   -v ./oops-data:/app/data \
   medzhidovomar/the-oops-bay
 ````
-For localhost-only, replace with: 127.0.0.1:3000:3000
+For localhost-only, on VPS replace with: 127.0.0.1:3000:3000
 
 Open your browser at:
 👉 **[http://localhost:3000](http://localhost:3000)** or your server IP on LAN.
