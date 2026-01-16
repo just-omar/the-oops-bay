@@ -7,7 +7,7 @@
 
 **A simple, lightweight Docker dashboard for your homelab.**
 
-I built this because I found Portainer too heavy for my needs, and Dozzle (while great) didn't show me historical resource usage. I just wanted to see *why* my server spiked at 3 AM without setting up Prometheus + Grafana.
+I built this because I found Portainer too heavy for my needs.
 
 ---
 
