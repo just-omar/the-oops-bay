@@ -17,8 +17,13 @@ I built this because I found Portainer too heavy for my needs.
 
 ## ⚠️ "Vibe Coding" Disclaimer
 
-**Honesty time:** I am learning Go. This project was built with heavy assistance from AI tools ("vibe coding").
-It works great on my machine and in my rack, but the code might not follow best practices. I built it to solve my own problem. Use at your own risk! ✌️
+This project was built with heavy assistance from AI tools.
+
+It works great on my machine.
+
+I built it to solve my own problem.
+
+Use at your own risk! ✌️
 
 ---
 
@@ -46,6 +51,7 @@ docker run -d \
 Docker Compose
 YAML
 ```
+docker-compose.yml
 ```yaml
 services:
   the-oops-bay:
@@ -58,16 +64,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./oops-data:/app/data
 ```
+```docker compose up -d```
+
 Note: Open at http://localhost:3000. The data folder is needed to save your icons and metrics history.
 
 🔒 Security Note
 This app has no authentication.
 
-Do not expose this directly to the internet.
+* Do not expose this directly to the internet.
 
 Use a VPN (Tailscale/Wireguard) or a Reverse Proxy (Nginx/Traefik) with Basic Auth if you need remote access.
 
-Or bind to localhost only: -p 127.0.0.1:3000:3000.
+* Or bind to localhost only: -p 127.0.0.1:3000:3000.
 
 📝 License
 GNU AGPL v3.0 Feel free to fork it or use it. If you fix my bugs, that's cool too.
