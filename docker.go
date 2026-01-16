@@ -27,7 +27,7 @@ func InitDocker() error {
 	var err error
 	dockerClient, err = client.NewClientWithOpts(
 		client.FromEnv,
-		client.WithVersion("1.41"),
+		client.WithAPIVersionNegotiation(),
 	)
 	if err != nil {
 		return err
